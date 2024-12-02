@@ -1,34 +1,28 @@
 import tkinter as tk
 
-def generate_content():
-    # Get text from the input box
-    user_input = text_box.get("1.0", "end-1c")  # Get all text from the Text widget
-    if user_input.strip():
-        # Generate output based on user input
-        output_label.config(text=f"Generated Content: {user_input[::-1]}")  # Reverse the text as an example
-    else:
-        output_label.config(text="Please enter some text!")
+def display_message():
+    # 从文本框获取内容
+    user_text = text_box.get("1.0", "end-1c")  # 获取用户输入
+    if not user_text.strip():  # 如果文本框为空
+        user_text = "现在已经是冬天啦，该睡觉！"
+    result_label.config(text=user_text)  # 更新显示区域内容
 
-# Create the main window
+# 创建主窗口
 window = tk.Tk()
-window.title("Text Box and Button Example")
+window.title("文字显示程序")
 window.geometry("400x300")
 
-# Create a label for instructions
-instruction_label = tk.Label(window, text="Enter your text below and click the button:")
-instruction_label.pack(pady=10)
-
-# Create a text box for user input
+# 文本框
 text_box = tk.Text(window, height=5, width=40)
 text_box.pack(pady=10)
 
-# Create a button that triggers the generate_content function
-generate_button = tk.Button(window, text="Generate Content", command=generate_content)
-generate_button.pack(pady=10)
+# 按钮
+show_button = tk.Button(window, text="点击显示", command=display_message)
+show_button.pack(pady=10)
 
-# Create a label to display the output
-output_label = tk.Label(window, text="", fg="blue", wraplength=350)
-output_label.pack(pady=10)
+# 显示区域
+result_label = tk.Label(window, text="", fg="blue", wraplength=350, anchor="w", justify="left")
+result_label.pack(pady=10)
 
-# Start the Tkinter event loop
+# 启动主事件循环
 window.mainloop()
