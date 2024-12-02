@@ -1,76 +1,121 @@
-<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
-<title>MBTI Test Questionnaire</title>
-<style>
-  h2 {
-    font-weight: bold;
-  }
-  input[type="radio"]:checked {
-    color: blue;
-  }
-</style>
-<H1>MBTI Personality Test Questionnaire</H1>
-<P>Please answer the following questions to determine your MBTI personality type:</P>
-<FORM METHOD="POST" ACTION="http://www.yourwebsite.com/submit_mbti">
-  <!-- Question 1 -->
-  <div style="page-break-after: always;">
-    <P><h2>1. Do you prefer spending time alone or with others?</h2></P>
-    <INPUT TYPE="RADIO" NAME="question1" VALUE="alone">Alone
-    <INPUT TYPE="RADIO" NAME="question1" VALUE="with others">With others
-  </div>
-  <!-- Question 2 -->
-  <div style="page-break-after: always;">
-    <P><h2>2. When making decisions, do you rely more on logic or emotions?</h2></P>
-    <INPUT TYPE="RADIO" NAME="question2" VALUE="logic">Logic
-    <INPUT TYPE="RADIO" NAME="question2" VALUE="emotions">Emotions
-  </div>
-  <!-- Question 3 -->
-  <div style="page-break-after: always;">
-    <P><h2>3. Are you more organized and structured or spontaneous and flexible?</h2></P>
-    <INPUT TYPE="RADIO" NAME="question3" VALUE="organized">Organized
-    <INPUT TYPE="RADIO" NAME="question3" VALUE="spontaneous">Spontaneous
-  </div>
-  <!-- Question 4 -->
-  <div style="page-break-after: always;">
-    <P><h2>4. Do you prefer to focus on details or see the big picture?</h2></P>
-    <INPUT TYPE="RADIO" NAME="question4" VALUE="details">Details
-    <INPUT TYPE="RADIO" NAME="question4" VALUE="big picture">Big picture
-  </div>
-  <!-- Question 5 -->
-  <div style="page-break-after: always;">
-    <P><h2>5. Are you more reserved and private or open and expressive?</h2></P>
-    <INPUT TYPE="RADIO" NAME="question5" VALUE="reserved">Reserved
-    <INPUT TYPE="RADIO" NAME="question5" VALUE="open">Open
-  </div>
-  <!-- Question 6 -->
-  <div style="page-break-after: always;">
-    <P><h2>6. Do you enjoy starting new projects or finishing existing ones?</h2></P>
-    <INPUT TYPE="RADIO" NAME="question6" VALUE="new projects">New projects
-    <INPUT TYPE="RADIO" NAME="question6" VALUE="finishing">Finishing existing ones
-  </div>
-  <!-- Question 7 -->
-  <div style="page-break-after: always;">
-    <P><h2>7. When in a group, do you tend to take the lead or follow others?</h2></P>
-    <INPUT TYPE="RADIO" NAME="question7" VALUE="lead">Take the lead
-    <INPUT TYPE="RADIO" NAME="question7" VALUE="follow">Follow others
-  </div>
-  <!-- Question 8 -->
-  <div style="page-break-after: always;">
-    <P><h2>8. Are you more practical and realistic or imaginative and idealistic?</h2></P>
-    <INPUT TYPE="RADIO" NAME="question8" VALUE="practical">Practical
-    <INPUT TYPE="RADIO" NAME="question8" VALUE="imaginative">Imaginative
-  </div>
-  <P>Thank you for taking this questionnaire.</P>
-  <P><INPUT TYPE="SUBMIT" onclick="generateMBTI()"> <INPUT TYPE="RESET"></P>
-</FORM>
-<script>
-  function generateMBTI() {
-    var answers = [];
-    for (var i = 1; i <= 8; i++) {
-      var answer = document.querySelector(`input[name="question${i}"]:checked`).value;
-      answers.push(answer);
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>MBTI Test Questionnaire</title>
+  <style>
+    h2 {
+      font-weight: bold;
     }
-    var personality = "";
-    if (answers[0] === "alone") {
-      personality += "I";
-    } else {
-      personality += "E
+
+    input[type="radio"]:checked {
+      color: blue;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>MBTI Personality Test Questionnaire</h1>
+  <p>Please answer the following questions to determine your MBTI personality type:</p>
+  <form id="mbtiForm">
+    <!-- Question 1 -->
+    <div>
+      <p><h2>1. Do you prefer spending time alone or with others?</h2></p>
+      <input type="radio" name="question1" value="I">Alone
+      <input type="radio" name="question1" value="E">With others
+    </div>
+    <!-- Question 2 -->
+    <div>
+      <p><h2>2. When making decisions, do you rely more on logic or emotions?</h2></p>
+      <input type="radio" name="question2" value="T">Logic
+      <input type="radio" name="question2" value="F">Emotions
+    </div>
+    <!-- Question 3 -->
+    <div>
+      <p><h2>3. Are you more organized and structured or spontaneous and flexible?</h2></p>
+      <input type="radio" name="question3" value="J">Organized
+      <input type="radio" name="question3" value="P">Spontaneous
+    </div>
+    <!-- Question 4 -->
+    <div>
+      <p><h2>4. Do you prefer to focus on details or see the big picture?</h2></p>
+      <input type="radio" name="question4" value="S">Details
+      <input type="radio" name="question4" value="N">Big picture
+    </div>
+    <!-- Question 5 -->
+    <div>
+      <p><h2>5. Are you more reserved and private or open and expressive?</h2></p>
+      <input type="radio" name="question5" value="I">Reserved
+      <input type="radio" name="question5" value="E">Open
+    </div>
+    <!-- Question 6 -->
+    <div>
+      <p><h2>6. Do you enjoy starting new projects or finishing existing ones?</h2></p>
+      <input type="radio" name="question6" value="P">New projects
+      <input type="radio" name="question6" value="J">Finishing existing ones
+    </div>
+    <!-- Question 7 -->
+    <div>
+      <p><h2>7. When in a group, do you tend to take the lead or follow others?</h2></p>
+      <input type="radio" name="question7" value="E">Take the lead
+      <input type="radio" name="question7" value="I">Follow others
+    </div>
+    <!-- Question 8 -->
+    <div>
+      <p><h2>8. Are you more practical and realistic or imaginative and idealistic?</h2></p>
+      <input type="radio" name="question8" value="S">Practical
+      <input type="radio" name="question8" value="N">Imaginative
+    </div>
+    <p>Thank you for taking this questionnaire.</p>
+    <p>
+      <button type="button" onclick="generateMBTI()">Submit</button>
+      <input type="reset">
+    </p>
+  </form>
+
+  <script>
+    const MBTI_DESCRIPTIONS = {
+      "INTJ": "The Architect: Strategic thinkers with a plan for everything.",
+      "INTP": "The Thinker: Imaginative and original, open-minded and curious.",
+      "ENTJ": "The Commander: Bold, imaginative, and strong-willed leaders.",
+      "ENTP": "The Debater: Smart and curious thinkers who cannot resist an intellectual challenge.",
+      "INFJ": "The Advocate: Quiet and mystical, yet very inspiring and tireless idealists.",
+      "INFP": "The Mediator: Poetic, kind, and altruistic, always eager to help a good cause.",
+      "ENFJ": "The Protagonist: Charismatic and inspiring leaders, able to mesmerize their listeners.",
+      "ENFP": "The Campaigner: Enthusiastic, creative, and sociable free spirits.",
+      "ISTJ": "The Logistician: Practical and fact-minded individuals, whose reliability cannot be doubted.",
+      "ISFJ": "The Defender: Very dedicated and warm protectors.",
+      "ESTJ": "The Executive: Excellent administrators, unsurpassed at managing things.",
+      "ESFJ": "The Consul: Extraordinarily caring, social, and popular people.",
+      "ISTP": "The Virtuoso: Bold and practical experimenters.",
+      "ISFP": "The Adventurer: Flexible and charming artists, always ready to explore.",
+      "ESTP": "The Entrepreneur: Smart, energetic, and very perceptive.",
+      "ESFP": "The Entertainer: Spontaneous, energetic, and enthusiastic performers."
+    };
+
+    function generateMBTI() {
+      const answers = [];
+      for (let i = 1; i <= 8; i++) {
+        const answer = document.querySelector(`input[name="question${i}"]:checked`);
+        if (answer) {
+          answers.push(answer.value);
+        } else {
+          alert(`Please answer question ${i}.`);
+          return;
+        }
+      }
+
+      const type = `${answers[0]}${answers[3]}${answers[1]}${answers[2]}`;
+      const description = MBTI_DESCRIPTIONS[type];
+
+      if (description) {
+        document.body.innerHTML = `<h1>Your MBTI Personality Type: ${type}</h1><p>${description}</p>`;
+      } else {
+        alert("Something went wrong. Please try again.");
+      }
+    }
+  </script>
+</body>
+
+</html>
+
