@@ -60,15 +60,17 @@
     <INPUT TYPE="RADIO" NAME="question8" VALUE="imaginative">Imaginative
   </div>
   <P>Thank you for taking this questionnaire.</P>
-  <P><INPUT TYPE="SUBMIT"> <INPUT TYPE="RESET"></P>
+  <P><INPUT TYPE="SUBMIT" onclick="generateMBTI()"> <INPUT TYPE="RESET"></P>
 </FORM>
 <script>
-  document.querySelector('form').addEventListener('submit', function(event) {
-    event.preventDefault();
-    // Get answers
+  function generateMBTI() {
     var answers = [];
     for (var i = 1; i <= 8; i++) {
       var answer = document.querySelector(`input[name="question${i}"]:checked`).value;
       answers.push(answer);
     }
-    //
+    var personality = "";
+    if (answers[0] === "alone") {
+      personality += "I";
+    } else {
+      personality += "E
