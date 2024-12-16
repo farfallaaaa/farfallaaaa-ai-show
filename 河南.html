@@ -31,17 +31,20 @@ html_code = """
         .slide h1 {
             font-size: 3rem;
             color: white;
+            margin-bottom: 20px;
         }
         .slide p {
             font-size: 1.5rem;
             color: white;
             max-width: 80%;
+            margin-bottom: 30px;
         }
         .slide img {
-            margin-top: 20px;
-            max-width: 60%;
-            height: auto;
+            max-width: 50%;
+            max-height: 50%;
             border-radius: 10px;
+            object-fit: cover;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
         }
         .slide:nth-child(1) { background: #8a2be2; }
         .slide:nth-child(2) { background: #ff4500; }
@@ -83,10 +86,10 @@ html_code = """
             <img src="肖战.jpg" alt="肖战">
         </div>
         <!-- Slide 3 -->
-        <div class="slide" style="transform: translateX(200%);">
+        <div class="slide" style="transform: translateX(100%);">
             <h1>王一博：全能艺人与赛车手</h1>
             <p>王一博不仅在演艺事业中展现才华，还活跃于专业摩托车和赛车赛事，是公认的全能型艺人。</p>
-            <img src=""王一博.jpg" alt="王一博">
+            <img src="王一博.jpg" alt="王一博">
         </div>
         <!-- Slide 4 -->
         <div class="slide" style="transform: translateX(300%);">
@@ -131,4 +134,5 @@ with open("博君一肖.html", "w", encoding="utf-8") as f:
     f.write(html_code)
 
 print("HTML 文件已生成，请在浏览器中打开 '博君一肖.html' 查看 PPT。")
+
 
