@@ -50,79 +50,79 @@ html_code = """
         .slide:nth-child(2) { background: #ff4500; }
         .slide:nth-child(3) { background: #1e90ff; }
         .slide:nth-child(4) { background: #32cd32; }
-        .controls {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            padding: 0 20px;
-            box-sizing: border-box;
-        }
-        .button {
-            background: rgba(0, 0, 0, 0.5);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 1.2rem;
-            cursor: pointer;
-            border-radius: 5px;
-        }
     </style>
 </head>
 <body>
     <div class="slides-container">
         <!-- Slide 1 -->
-        <div class="slide" style="transform: translateX(0);">
+        <div class="slide" style="transform: translateY(0);">
             <h1>博君一肖：由《陈情令》起航</h1>
             <p>“博君一肖”起源于《陈情令》，两位主演肖战（魏无羡）与王一博（蓝忘机）的合作赢得了无数粉丝的喜爱。</p>
             <img src="bjyx.jpg" alt="博君一肖图片">
         </div>
         <!-- Slide 2 -->
-        <div class="slide" style="transform: translateX(100%);">
+        <div class="slide" style="transform: translateY(100%);">
             <h1>肖战：多才多艺的演员与歌手</h1>
             <p>肖战以精湛的演技和歌唱实力，成为国内最具影响力的明星之一。他的单曲多次登顶音乐榜单，影视作品口碑不俗。</p>
             <img src="肖战.jpg" alt="肖战">
         </div>
         <!-- Slide 3 -->
-        <div class="slide" style="transform: translateX(100%);">
+        <div class="slide" style="transform: translateY(200%);">
             <h1>王一博：全能艺人与赛车手</h1>
             <p>王一博不仅在演艺事业中展现才华，还活跃于专业摩托车和赛车赛事，是公认的全能型艺人。</p>
             <img src="王一博.jpg" alt="王一博">
         </div>
         <!-- Slide 4 -->
-        <div class="slide" style="transform: translateX(300%);">
+        <div class="slide" style="transform: translateY(300%);">
             <h1>粉丝文化与公益行动</h1>
             <p>“博君一肖”的粉丝积极参与公益活动，以偶像为榜样，传递正能量，展现了优秀的粉丝文化。</p>
             <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Fans_donation.jpg" alt="粉丝公益">
         </div>
     </div>
-    <div class="controls">
-        <button class="button" onclick="prevSlide()">上一页</button>
-        <button class="button" onclick="nextSlide()">下一页</button>
-    </div>
     <script>
         let currentSlide = 0;
         const slides = document.querySelectorAll('.slide');
+        let startY = 0; // 开始触摸的 Y 坐标
+        let endY = 0;   // 结束触摸的 Y 坐标
         
         function showSlide(index) {
             slides.forEach((slide, i) => {
-                slide.style.transform = `translateX(${(i - index) * 100}%)`;
+                slide.style.transform = `translateY(${(i - index) * 100}%)`;
             });
         }
-        
+
         function nextSlide() {
-            currentSlide = (currentSlide + 1) % slides.length;
-            showSlide(currentSlide);
+            if (currentSlide < slides.length - 1) {
+                currentSlide += 1;
+                showSlide(currentSlide);
+            }
         }
-        
+
         function prevSlide() {
-            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-            showSlide(currentSlide);
+            if (currentSlide > 0) {
+                currentSlide -= 1;
+                showSlide(currentSlide);
+            }
         }
-        
-        // Initialize first slide
+
+        // 监听触摸开始
+        document.addEventListener('touchstart', (e) => {
+            startY = e.touches[0].clientY;
+        });
+
+        // 监听触摸结束
+        document.addEventListener('touchend', (e) => {
+            endY = e.changedTouches[0].clientY;
+            if (startY - endY > 50) {
+                // 上滑，下一页
+                nextSlide();
+            } else if (endY - startY > 50) {
+                // 下滑，上一页
+                prevSlide();
+            }
+        });
+
+        // 初始化第一个幻灯片
         showSlide(currentSlide);
     </script>
 </body>
@@ -134,5 +134,6 @@ with open("博君一肖.html", "w", encoding="utf-8") as f:
     f.write(html_code)
 
 print("HTML 文件已生成，请在浏览器中打开 '博君一肖.html' 查看 PPT。")
+
 
 
