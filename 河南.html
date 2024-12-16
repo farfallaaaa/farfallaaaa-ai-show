@@ -1,0 +1,133 @@
+html_code = """
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>河南文明历史</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+        .slides-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+        }
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            transition: transform 0.6s ease-in-out;
+            backface-visibility: hidden;
+        }
+        .slide h1 {
+            font-size: 3rem;
+            color: white;
+        }
+        .slide p {
+            font-size: 1.5rem;
+            color: white;
+            max-width: 80%;
+        }
+        .slide img {
+            margin-top: 20px;
+            max-width: 60%;
+            height: auto;
+            border-radius: 10px;
+        }
+        .slide:nth-child(1) { background: #3b5998; }
+        .slide:nth-child(2) { background: #8a3ab9; }
+        .slide:nth-child(3) { background: #00aced; }
+        .slide:nth-child(4) { background: #d34836; }
+        .controls {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+        .button {
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="slides-container">
+        <!-- Slide 1 -->
+        <div class="slide" style="transform: translateX(0);">
+            <h1>河南的历史起源</h1>
+            <p>河南是中华文明的发源地之一，历史可以追溯到夏商时期。</p>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/8/8e/Anyang_Yinxu_Jiaguwen.jpg" alt="殷墟甲骨文">
+        </div>
+        <!-- Slide 2 -->
+        <div class="slide" style="transform: translateX(100%);">
+            <h1>中原文化中心</h1>
+            <p>作为中原地区的重要省份，河南承载了大量的文化传承，如少林功夫和河洛文化。</p>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c0/Shaolin_Temple_-_Pagoda_Forest.jpg" alt="少林寺塔林">
+        </div>
+        <!-- Slide 3 -->
+        <div class="slide" style="transform: translateX(200%);">
+            <h1>黄河文明</h1>
+            <p>河南是黄河文明的核心地带，黄河孕育了古老的农耕文化和灿烂的艺术。</p>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/68/Yellow_River_Xiaolangdi_Hydropower_Station.JPG" alt="黄河">
+        </div>
+        <!-- Slide 4 -->
+        <div class="slide" style="transform: translateX(300%);">
+            <h1>洛阳与龙门石窟</h1>
+            <p>洛阳作为历史古都，以龙门石窟等名胜闻名于世，展现了盛唐时期的文化繁荣。</p>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/1/15/Longmen-grottoes-2004.jpg" alt="龙门石窟">
+        </div>
+    </div>
+    <div class="controls">
+        <button class="button" onclick="prevSlide()">上一页</button>
+        <button class="button" onclick="nextSlide()">下一页</button>
+    </div>
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.style.transform = `translateX(${(i - index) * 100}%)`;
+            });
+        }
+        
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+        
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        }
+        
+        // Initialize first slide
+        showSlide(currentSlide);
+    </script>
+</body>
+</html>
+"""
+
+# 保存到文件
+with open("河南文明历史.html", "w", encoding="utf-8") as f:
+    f.write(html_code)
+
+print("HTML 文件已生成，请在浏览器中打开 '河南文明历史.html' 查看 PPT。")
